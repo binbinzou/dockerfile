@@ -1,13 +1,18 @@
 FROM openjdk:8-jdk
 
-RUN apt-get update && apt-get install -y  git \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak
+COPY sources.list /etc/apt/sources.list
+
+
+RUN apt-get update && apt-get install git \
  curl  \
  maven \
- golang \
+ golang=1.10 \
  nodejs \
  ant \
  ruby \
- python \
  python \
  php \
  apt-transport-https \
